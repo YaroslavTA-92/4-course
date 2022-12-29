@@ -1,0 +1,144 @@
+﻿@using MobileStore.Models
+@model IEnumerable<MobileStore.Models.Phone>
+@{
+    ViewData["Title"] = "Оформлення замовлення";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+        .btn {
+            border-right-color: green; /* колір для обводки*/
+            border-left-color: green; /* колір для обводки*/
+            border-block-color: green; /* колір для обводки*/
+            color: green; /*колір тексту*/
+        }
+
+         .btn:hover {
+                background-color: forestgreen; /*колір при наводженні*/
+                color: white; /*колір тексту при наводженні*/
+            }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #04AA6D;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #e6ffe9;
+        }
+
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: #e6ffe9;
+                outline: none;
+            }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #e6ffe9;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit button */
+        .registerbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+            .registerbtn:hover {
+                opacity: 1;
+            }
+
+        /* Add a blue text color to links */
+        a {
+            color: #E0FFFF;
+        }
+
+        /* Set a grey background color and center the text of the "sign in" section */
+        .signin {
+            background-color: #04AA6D;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="padding: 20px 0px; text-align: center; font-weight: bold;">Список покупок</h2>
+    <table class="table table-striped table-condensed table-hover" style="background-color: #E0FFFF;">
+        <tr>
+            <td>Модель</td>
+            <td>Виробник</td>
+            <td>Ціна</td>
+            <td></td>
+        </tr>
+        @foreach (var phone in @Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => phone.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => phone.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => phone.Price)
+                </td>
+                <td>
+                    @*<a href="~/Home/Index/@phone">*@
+                    <form action="~/Home/RemoveFromOrder/@phone.Id">
+                        <button  size="small">Видалити</button>
+                    </form>
+                    @*</a>*@
+                </td>
+            </tr>
+        }
+    </table>
+    <form action="/action_page.php">
+        <div class="container">
+            <input type="hidden" value="@ViewBag.PhoneId" name="PhoneId" />
+            <h2 style="padding: 20px 0px; text-align: center; font-weight: bold;">Форма оформлення покупки</h2>
+            <p>Для оформлення замовлення заповніть наступні поля:</p>
+            <hr>
+
+            <label for="User" class="col-md-2 control-label"><b>Ім'я':</b></label>
+            <input type="text" placeholder="Введіть ім'я'" name="User" id="User" required>
+
+            <label for="Address" class="col-md-2 control-label"><b>Адреса:</b></label>
+            <input type="text" placeholder="Введіть адресу" name="Address" id="Address" required>
+
+            <label for="ContactPhone" class="col-md-2 control-label"><b>Контактний номер:</b></label>
+            <input type="text" placeholder="Введіть номер телефону" name="ContactPhone" id="ContactPhone" required>
+            <hr>
+
+            <p>При відправленні даних ви погоджуєтеся із нашою <a href="#">політикою конфіденційності</a>.</p>
+            <div align="center">
+                <button  class="btn" style="height: 70px; width: 200px; ;">Підтвертити</button>
+            </div>
+            
+        </div>
+    </form>
+
+</body>
+</html>

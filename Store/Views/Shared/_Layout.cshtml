@@ -1,0 +1,98 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        .btn {
+            border-right-color: green; /* колір для обводки*/
+            border-left-color: green; /* колір для обводки*/
+            border-block-color: green; /* колір для обводки*/
+            color: green; /*колір тексту*/
+        }
+
+            .btn:hover {
+                background-color: forestgreen; /*колір при наводженні*/
+                color: white; /*колір тексту при наводженні*/
+            }
+        button[type=submit] {
+            color: #04AA6D;
+            background-color: white;
+            border-color: #04AA6D;
+            border-radius: 5px;
+            font-size: 18px;
+            padding: 4px 20px;
+            border-width: 1px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        head {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        li[class = "nav-item"] {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+        li[class = "nav-item active"] {
+            background-color: #04AA6D;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 8px;
+        }
+
+        .image {
+            content: url("https://cdn-icons-png.flaticon.com/512/1843/1843275.png");
+            color: #04AA6D;
+            height: 40px;
+            width: 38px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e6ffe9; font-size: 20px;">
+        <span class="navbar-brand" style="font-size: 35px; color: #04AA6D; padding-right: 30px;">MobileShop</span>
+
+
+        <div class="collapse navbar-collapse" id="#e6ffe9">
+            <ul class="navbar-nav mr-auto">
+                <li class="@TopNavigationBar.m_ActiveValues[0]">
+                    <a class="nav-link" href="~/Home/Index">Головна</a>
+                </li>
+                <li class="@TopNavigationBar.m_ActiveValues[1]">
+                    <a class="nav-link" href="~/Home/Edit"> Редагувати</a>
+                </li>   
+            </ul>
+            <form class="form-inline" action="~/Home/Index" style="padding-right: 10px">
+                <input class="form-control mr-sm-2" type="search" placeholder="що знайти?" aria-label="що знайти?" name="part">
+                <button class="btn" type="submit" >Знайти</button>
+            </form>
+            <a href="~/Home/Buy">
+                <span class="image" padding-top: 5px;" />
+            </a>
+            <span style="color: #E0FFFF;">@ViewData["BuyCounter"]</span>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>© 2022 - MobileStore</p>
+        </footer>
+    </div>
+
+</body>
+</html>
